@@ -1,5 +1,7 @@
 class Solution {
 public:
+    // TC : O(2^N)
+    // SC : O(N * 2^N)
     vector<vector<int>> subsets(vector<int>& nums) {
         vector<vector<int>> ans;
         vector<int> current;
