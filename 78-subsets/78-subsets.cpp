@@ -8,12 +8,17 @@ public:
     }
     
     void solve(int idx, vector<int> &nums, vector<int> &current, vector<vector<int>> &ans) {
-        ans.push_back(current);
-        
-        for(int i = idx; i < nums.size(); i++) {
-            current.push_back(nums[i]);
-            solve(i + 1, nums, current, ans);
-            current.pop_back();
+        if(idx == nums.size()) { // Base case
+            ans.push_back(current);
+            return;
         }
+        
+        // Pick
+        current.push_back(nums[idx]);
+        solve(idx + 1, nums, current, ans);
+        current.pop_back();
+        
+        // Not Pick
+        solve(idx + 1, nums, current, ans);
     }
 };
