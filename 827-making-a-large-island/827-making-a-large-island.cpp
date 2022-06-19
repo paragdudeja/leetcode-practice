@@ -16,7 +16,7 @@ public:
             }
         }
         
-        if(mp[2] == m*n) return m*n;
+        // if(mp[2] == m*n) return m*n;
         vector<int> dirs{0,1,0,-1,0};
         
         for(int i = 0; i < m; i++) {
@@ -38,7 +38,7 @@ public:
             }
         }
         
-        return ans;
+        return ans == 0 ? mp[2] : ans;
     }
     
     int dfs(int id, int i, int j, vector<vector<int>>& grid, int m, int n) {
