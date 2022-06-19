@@ -9,9 +9,9 @@ public:
         }
         
         int windowSize = n - k;
-        if(windowSize == 0) {
-            return total;
-        }
+        // if(windowSize == 0) {
+        //     return total;
+        // }
         
         int windowSum = 0;
         for(int i = 0; i < windowSize; i++) {
