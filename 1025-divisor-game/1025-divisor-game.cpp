@@ -7,10 +7,10 @@ public:
             return dp[n] = false;
         }
         else {
-            for(int i = 1; i*i < n; i++) {
+            for(int i = 1; i*i <= n; i++) {
                 if(n%i == 0) {
                     if(solve(n-i) == 0) return dp[n] = true;
-                    if(i > 1 && solve(n - (n/i))==0) return dp[n] = true;
+                    if(i != 1 && solve(n - (n/i))==0) return dp[n] = true;
                 }
             }
         }
