@@ -3,26 +3,16 @@ public:
     // TC : O(N)
     // SC : O(1)
     int maxScore(vector<int>& cardPoints, int k) {
-        int n = (int)cardPoints.size(), total = 0;
-        for(int i = 0; i < n; i++) {
-            total += cardPoints[i];
+        int n = (int)cardPoints.size(), lSum = 0;
+        for(int i = 0; i < k; ++i){
+            lSum += cardPoints[i];
         }
-        
-        int windowSize = n - k;
-        // if(windowSize == 0) {
-        //     return total;
-        // }
-        
-        int windowSum = 0;
-        for(int i = 0; i < windowSize; i++) {
-            windowSum += cardPoints[i];
+        int maxPoints = lSum;
+        for(int rSum = 0, i = 0; i < k; ++i){
+            rSum += cardPoints[n-1-i];
+            lSum -= cardPoints[k-1-i];
+            maxPoints = max(maxPoints,lSum+rSum);
         }
-        
-        int minWindowSum = windowSum;
-        for(int i = windowSize; i < n; i++) {
-            windowSum = windowSum + cardPoints[i] - cardPoints[i - windowSize];
-            minWindowSum = min(minWindowSum, windowSum);
-        }
-        return total - minWindowSum;
+        return maxPoints;
     }
 };
