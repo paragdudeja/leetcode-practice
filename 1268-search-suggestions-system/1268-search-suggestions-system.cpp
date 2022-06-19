@@ -8,12 +8,11 @@ public:
         for(int i = 0; i < (int)searchWord.size(); i++) {
             current.push_back(searchWord[i]);
             vector<string> res;
-            for(const string &s: products) {
-                if(s.substr(0, i+1) == current) {
-                    res.push_back(s);
-                }
-                if(res.size() == 3)
-                    break;
+            auto it = lower_bound(products.begin(), products.end(), current);
+            for(int i = 0; i < 3 && it != products.end(); it++, i++) {
+                string s = *it;
+                if(s.find(current)) break;
+                res.push_back(s);
             }
             ans.push_back(res);
         }
