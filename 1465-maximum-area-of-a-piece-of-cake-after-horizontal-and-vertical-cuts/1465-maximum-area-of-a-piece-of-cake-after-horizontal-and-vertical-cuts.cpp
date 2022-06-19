@@ -1,5 +1,7 @@
 class Solution {
 public:
+    // TC: O(N log N)
+    // SC : O(1)
     int maxArea(int h, int w, vector<int>& horizontalCuts, vector<int>& verticalCuts) {
         sort(horizontalCuts.begin(), horizontalCuts.end());
         sort(verticalCuts.begin(), verticalCuts.end());
