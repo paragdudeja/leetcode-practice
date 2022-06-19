@@ -10,9 +10,8 @@ public:
             vector<string> res;
             auto it = lower_bound(products.begin(), products.end(), current);
             for(int i = 0; i < 3 && it != products.end(); it++, i++) {
-                string s = *it;
-                if(s.find(current)) break;
-                res.push_back(s);
+                if(it->find(current)) break;
+                res.push_back(*it);
             }
             ans.push_back(res);
         }
