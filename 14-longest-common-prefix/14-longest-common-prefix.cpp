@@ -5,7 +5,7 @@ public:
         bool flag  = true;
         for(i = 0; i < strs[0].size(); i++) {
             for(const string &word: strs) {
-                if(word.length() <= i || word[i] != strs[0][i]) {
+                if(word.length() < i || word[i] != strs[0][i]) {
                     flag = false;
                     break;
                 }
