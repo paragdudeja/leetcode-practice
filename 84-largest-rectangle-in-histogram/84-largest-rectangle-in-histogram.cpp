@@ -1,5 +1,9 @@
 class Solution {
 public:
+    // Using monototonic stack
+    // TC : O(N)
+    // SC : O(N)
+    
     int largestRectangleArea(vector<int>& heights) {
         vector<int> prevSmaller = getPrevSmaller(heights);
         vector<int> nextSmaller = getNextSmaller(heights);
