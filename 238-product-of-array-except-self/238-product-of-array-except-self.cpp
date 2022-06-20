@@ -10,7 +10,7 @@ public:
             prods[i] = prods[i - 1] * nums[i - 1];
         }
         
-        // Rigth products
+        // Right products
         for (int j = n - 1, right = 1; j >= 0; j--) {
             prods[j] *= right;
             right *= nums[j];
