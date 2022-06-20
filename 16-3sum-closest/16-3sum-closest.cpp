@@ -1,5 +1,7 @@
 class Solution {
 public:
+    // TC : O(N^2)
+    // SC : O(1)
     int threeSumClosest(vector<int>& nums, int target) {
     if(nums.size() < 3) return 0;
         
