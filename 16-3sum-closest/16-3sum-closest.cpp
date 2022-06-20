@@ -12,6 +12,9 @@ public:
             int third = n - 1;
             while(second < third) {
                 int sum = nums[first] + nums[second] + nums[third];
+                if(sum == target) {
+                    return sum;
+                }
                 int currentDiff = abs(target - sum);
                 if(currentDiff < diff) {
                     diff = currentDiff;
