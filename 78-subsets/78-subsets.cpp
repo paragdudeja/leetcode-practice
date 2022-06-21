@@ -9,6 +9,18 @@ public:
         return result;
     }
     
+    
+    void solve(int index, vector<int> &nums, vector<int> &current, vector<vector<int>> &result) {
+        result.push_back(current);
+        
+        for(int i = index; i < nums.size(); i++) {
+            current.push_back(nums[i]);
+            solve(i + 1, nums, current, result);
+            current.pop_back();
+        }
+    }
+    
+    /*
     void solve(int index, vector<int> &nums, vector<int> &current, vector<vector<int>> &result) {
         if(index == nums.size()) {
             result.push_back(current);
@@ -23,4 +35,5 @@ public:
         // Not Pick
         solve(index + 1, nums, current, result); // / Genrate combinations without picking current
     }
+    */
 };
