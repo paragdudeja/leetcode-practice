@@ -8,20 +8,22 @@ public:
         return result;
     }
     
-    void solve(int idx, int target, vector<int>& candidates, vector<int> &current, vector<vector<int>> &result) {
-        if(idx == candidates.size()) {
-            if(target == 0) {
-                result.push_back(current);
-            }
+    void solve(int index, int target, vector<int>& candidates, vector<int> &current, vector<vector<int>> &result) {
+        if(index == candidates.size()) {    
+            return;
+        }
+        if(target == 0) {
+            result.push_back(current);
             return;
         }
         
-        if(candidates[idx] <= target) {
-            current.push_back(candidates[idx]);
-            solve(idx, target - candidates[idx], candidates, current, result);
+        
+        if(candidates[index] <= target) {
+            current.push_back(candidates[index]);
+            solve(index, target - candidates[index], candidates, current, result);
             current.pop_back();
         }
         
-        solve(idx+1, target, candidates, current, result);
+        solve(index + 1, target , candidates, current, result);
     }
 };
