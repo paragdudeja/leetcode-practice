@@ -5,9 +5,8 @@ public:
         
         for(int i = 0; i < heights.size() - 1; i++) {
             int diff = heights[i] - heights[i+1];
-            if(diff >= 0) continue;
-            pq.push(-diff);
-            // cout << diff << endl;
+            if(diff < 0)
+                pq.push(-diff);
             if(pq.size() > ladders) {
                 bricks -= pq.top();
                 pq.pop();
