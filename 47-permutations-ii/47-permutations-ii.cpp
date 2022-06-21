@@ -1,20 +1,26 @@
 class Solution {
 public:
-    void helper(int i, vector<int> num, vector<vector<int> > &res) {
-        if (i == num.size() -1) {
-            res.push_back(num);
+    void perm(int index, vector<vector<int>> &ans, vector<int> &nums){
+        if(index == nums.size()){
+            ans.push_back(nums);
             return;
         }
-        for (int j = i; j < num.size(); j++) {
-            if (i != j && num[i] == num[j]) continue;
-            swap(num[i], num[j]);
-            helper(i+1, num, res);
+        
+        
+        unordered_set<int> s;
+        for(int i = index; i < nums.size(); i++) {
+            if(s.count(nums[i])) continue;
+            s.insert(nums[i]);
+            swap(nums[i], nums[index]);
+            perm(index+1, ans, nums);
+            swap(nums[i], nums[index]);
         }
     }
-    vector<vector<int> > permuteUnique(vector<int> &num) {
-        sort(num.begin(), num.end());
-        vector<vector<int> >res;
-        helper(0, num, res);
-        return res;
+    
+    vector<vector<int>> permuteUnique(vector<int>& nums) {
+        vector<vector<int>> ans;
+        // sort(nums.begin(), nums.end());
+        perm(0, ans, nums);
+        return ans;
     }
 };
