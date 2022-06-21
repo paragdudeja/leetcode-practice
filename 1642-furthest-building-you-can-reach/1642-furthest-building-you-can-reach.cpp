@@ -9,14 +9,12 @@ public:
             pq.push(-diff);
             // cout << diff << endl;
             if(pq.size() > ladders) {
-                if(pq.top() <= bricks) {
-                    bricks -= pq.top();
-                    pq.pop();
-                }
-                else {
-                    return i;
-                }
+                bricks -= pq.top();
+                pq.pop();
             } 
+            if(bricks < 0) {
+                return i;
+            }
         }
         return (int)heights.size() - 1;
     }
