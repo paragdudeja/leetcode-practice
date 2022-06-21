@@ -8,17 +8,17 @@ public:
     }
     
     void helper(int start, int k, int target, vector<int> &curr, vector<vector<int>> &res) {
-        if(curr.size() == k) {
-            if(target == 0) {
-                res.push_back(curr);
-            }
+        if(k < 0 || target < 0)
+            return;
+        
+        if(k == 0 && target == 0) {
+            res.push_back(curr);
             return;
         }
         
         for(int i = start; i < 10; i++) {
-            if(i > target) break;
             curr.push_back(i);
-            helper(i + 1, k, target - i, curr, res);
+            helper(i + 1, k - 1, target - i, curr, res);
             curr.pop_back();
         }
     }
