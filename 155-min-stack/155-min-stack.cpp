@@ -13,10 +13,9 @@ public:
     }
     
     void pop() {
-        int val = st.top();
-        st.pop();
-        if(minst.top() == val)
+        if(minst.top() == st.top())
             minst.pop();
+        st.pop();
     }
     
     int top() {
