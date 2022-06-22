@@ -13,7 +13,7 @@ class Solution {
 public:
     bool isSubtree(TreeNode* root, TreeNode* subRoot) {
         if(!root) return false;
-        if(root->val == subRoot->val && isSame(root, subRoot))
+        if(isSame(root, subRoot))
             return true;
         return isSubtree(root->left, subRoot) || isSubtree(root->right, subRoot);
     }
