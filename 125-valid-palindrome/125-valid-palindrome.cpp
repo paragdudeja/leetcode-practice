@@ -9,8 +9,9 @@ public:
             while(!isalnum(s[j]) && i < j) {
                 j--;
             }
-            if(tolower(s[i++]) != tolower(s[j--]))
+            if(tolower(s[i++]) != tolower(s[j--])){
                 return false;
+            }
         }
         return true;
     }
