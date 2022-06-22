@@ -11,28 +11,32 @@
  */
 
 struct BalanceStatus {
-    bool isBalanced;
+    bool balanced;
     int height;
-    BalanceStatus(bool isBalanced, int height) : isBalanced(isBalanced), height(height) {}    
 };
 
 class Solution {
 public:
     bool isBalanced(TreeNode* root) {
-        return helper(root).isBalanced;
+        return helper(root).balanced;
     }
     
     BalanceStatus helper(TreeNode *root) {
         if(!root) {
-            return BalanceStatus(true, 0);
+            return {true, 0};
         }
         
         BalanceStatus left = helper(root->left);
-        BalanceStatus right = helper(root->right);
+        if(!left.balanced)
+            return {false, 0};
         
-        bool isBalanced = left.isBalanced && right.isBalanced && abs(left.height - right.height) <= 1;
+        BalanceStatus right = helper(root->right);
+        if(!right.balanced)
+            return {false, 0};
+        
+        bool balanced = abs(left.height - right.height) <= 1;
         int height = 1 + max(left.height, right.height);
         
-        return BalanceStatus(isBalanced, height);
+        return {balanced, height};
     }
 };
