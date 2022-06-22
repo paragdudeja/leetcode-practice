@@ -3,19 +3,14 @@ public:
     bool isPalindrome(string s) {
         int i = 0, j = s.size() -1;
         while(i < j) {
-            if(!isalnum(s[i])) {
+            while(!isalnum(s[i]) && i < j) {
                 i++;
-                continue;
             }
-            if(!isalnum(s[j])) {
+            while(!isalnum(s[j]) && i < j) {
                 j--;
-                continue;
             }
-            char left = s[i++];
-            char right = s[j--];
-            if(!isdigit(left) && left <= 'Z') left += 32;
-            if(!isdigit(right) && right <= 'Z') right += 32;
-            if(left != right) return false;
+            if(tolower(s[i++]) != tolower(s[j--]))
+                return false;
         }
         return true;
     }
