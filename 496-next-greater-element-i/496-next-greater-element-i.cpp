@@ -1,7 +1,7 @@
 class Solution {
 public:
     vector<int> nextGreaterElement(vector<int>& nums1, vector<int>& nums2) {
-        vector<int> mp(10001);
+        int mp[10001];
         
         stack<int> st;
         int n = nums2.size();
