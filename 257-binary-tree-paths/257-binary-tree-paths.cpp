@@ -20,17 +20,14 @@ public:
     
     void helper(TreeNode *root, vector<int> &curr, vector<string> &res) {
         if(!root) return;
-        // curr.push_back(root->val);
-        if(!root->left && !root->right) { // Leaf node
-            string path;
-            for(int i = 0; i < curr.size(); i++) {
-                path += to_string(curr[i]) + "->";
-            }
-            path += to_string(root->val);
-            res.push_back(path);
-            return;
-        }
         curr.push_back(root->val);
+        if(!root->left && !root->right) { // Leaf node
+            string path = to_string(curr[0]);
+            for(int i = 1; i < curr.size(); i++) {
+                path += "->" + to_string(curr[i]);
+            }
+            res.push_back(path);
+        }
         helper(root->left, curr, res);
         helper(root->right, curr, res);
         curr.pop_back();
