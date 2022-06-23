@@ -11,18 +11,13 @@
  */
 class Solution {
 public:
-    int goodNodes(TreeNode* root) {
-        int count = 0, val = root->val;
-        dfs(root, count, val);
+    int goodNodes(TreeNode* root, int min_val = -100000) {
+        if(!root) return 0;
+        int count = 0;
+        if(root->val >= min_val) count = 1;
+        min_val = max(min_val, root->val);
+        count += goodNodes(root->left, min_val) + goodNodes(root->right, min_val);
         return count;
     }
     
-    void dfs(TreeNode *root, int &count, int min_val) {
-        if(!root) return;
-        
-        if(root->val >= min_val) count++;
-        min_val = max(root->val, min_val);
-        dfs(root->left, count, min_val);
-        dfs(root->right, count, min_val);
-    }
 };
