@@ -10,6 +10,18 @@
 class Solution {
 public:
     TreeNode* lowestCommonAncestor(TreeNode* root, TreeNode* p, TreeNode* q) {
+        if(!root) return nullptr;
+        
+        if(root->val == p->val || root->val == q->val) return root;
+        TreeNode *lca1 = lowestCommonAncestor(root->left,  p, q);
+        TreeNode *lca2 = lowestCommonAncestor(root->right,  p, q);
+        
+        if(lca1 && lca2) return root;
+        return lca1 ? lca1 : lca2;
+    }
+    
+    /*
+    TreeNode* lowestCommonAncestor(TreeNode* root, TreeNode* p, TreeNode* q) {
         vector<int> path1;
         if(!buildPath(root, p->val, path1))
             return nullptr;
@@ -39,4 +51,5 @@ public:
         path.pop_back();
         return false;
     }
+    */
 };
