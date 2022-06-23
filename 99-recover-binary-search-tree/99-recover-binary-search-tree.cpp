@@ -14,14 +14,15 @@ public:
     void recoverTree(TreeNode* root) {
         vector<TreeNode*> v;
         inorder(root, v);
-        int first = -1, second = -1;
-        for(int i = 1; i < v.size(); i++) {
-            if(v[i]->val < v[i-1]->val) {
-                if(first == -1) first = i-1;
-                second = i;
+        TreeNode *first=NULL, *second=NULL, *prev=NULL;
+        for(int i=0; i<v.size(); i++) {
+            if(prev && v[i]->val < prev->val){
+                if(!first) first = prev;
+                second = v[i];
             }
+            prev = v[i];
         }
-        swap(v[first]->val, v[second]->val);
+        swap(first->val, second->val);
     }
     
     void inorder(TreeNode *root, vector<TreeNode*> &v) {
