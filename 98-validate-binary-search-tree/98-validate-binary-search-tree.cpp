@@ -18,8 +18,8 @@ public:
     bool validate(TreeNode* root, long long min_value, long long max_value) {
         if(!root) return true;
         
-        if(root->val <= min_value || root->val >= max_value) return false;
-        
-        return validate(root->left, min_value, root->val) and validate(root->right, root->val, max_value);
+        return root->val > min_value && root->val < max_value 
+            && validate(root->left, min_value, root->val) 
+            && validate(root->right, root->val, max_value);
     }
 };
