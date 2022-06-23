@@ -21,7 +21,8 @@ public:
         if(!root) return;
         
         if(root->val >= min_val) count++;
-        dfs(root->left, count, max(root->val, min_val));
-        dfs(root->right, count, max(root->val, min_val));
+        min_val = max(root->val, min_val);
+        dfs(root->left, count, min_val);
+        dfs(root->right, count, min_val);
     }
 };
