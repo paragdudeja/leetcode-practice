@@ -11,6 +11,28 @@
  */
 class Solution {
 public:
+    // TC : O(N)
+    // SC : O(height) / O(1) (iterative)
+    void recoverTree(TreeNode* root) {
+        TreeNode *prev = NULL, *first = NULL, *second = NULL;
+        helper(root, prev, first, second);
+        swap(first->val, second->val);
+    }
+    
+    void helper(TreeNode* root, TreeNode* &prev, TreeNode* &first, TreeNode* &second) {
+        if(!root) return;
+        helper(root->left, prev, first, second);
+        if(prev && root->val < prev->val) {
+            if(!first) first = prev;
+            second = root;
+        }
+        prev = root;
+        helper(root->right, prev, first, second);
+    }
+    
+    /*
+    // TC : O(N)
+    // SC : O(N) for vector
     void recoverTree(TreeNode* root) {
         vector<TreeNode*> v;
         inorder(root, v);
@@ -30,26 +52,6 @@ public:
         inorder(root->left, v);
         v.push_back(root);
         inorder(root->right, v);
-    }
-    
-    /*
-    void recoverTree(TreeNode* root) {
-        TreeNode *prev = NULL;
-        TreeNode *node1 = NULL;
-        TreeNode *node2 = NULL;
-        helper(root, prev, node1, node2);
-        swap(node1->val, node2->val);
-    }
-    
-    void helper(TreeNode* root, TreeNode* &prev, TreeNode* &node1, TreeNode* &node2) {
-        if(!root) return;
-        helper(root->left, prev, node1, node2);
-        if(prev && root->val < prev->val) {
-            if(!node1) node1 = prev;
-            node2 = root;
-        }
-        prev = root;
-        helper(root->right, prev, node1, node2);
     }
     */
 };
