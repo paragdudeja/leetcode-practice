@@ -1,6 +1,19 @@
 class Solution {
 public:
     int numTrees(int n) {
+        vector<int> dp(n+1, 0);
+        dp[0] = 1;
+        
+        for(int i = 1; i <= n; i++) {
+            for(int j = 0, k = i - 1; j < i; j++, k--) {
+                dp[i] += dp[j] * dp[k];
+            }
+        }
+        return dp[n];
+    }
+    
+    /*
+    int numTrees(int n) {
         vector<int> dp(n+1, -1);
         return getCount(n, dp);
     }
@@ -19,4 +32,5 @@ public:
         
         return dp[n] = ans;
     }
+    */
 };
