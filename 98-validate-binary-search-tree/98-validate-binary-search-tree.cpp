@@ -19,9 +19,8 @@ public:
     bool validate(TreeNode* root) {
         if(!root) return true;
         
-        if(!validate(root->left))
-            return false;
-        if(prev && root->val<=prev->val) return false;
+        if(!validate(root->left)) return false;
+        if(prev && root->val <= prev->val) return false;
         prev = root;
         return validate(root->right);
     }
