@@ -29,8 +29,9 @@ public:
                 
                 auto node = data.first;
                 unsigned int pos = data.second - low;
-                if(node->left) q.push({node->left, pos*2+1});
-                if(node->right) q.push({node->right, pos*2+2});
+                
+                if(node->left) q.push({node->left, pos*2 + 1});
+                if(node->right) q.push({node->right, pos*2 + 2});
             }
         }
         return maxWidth;
