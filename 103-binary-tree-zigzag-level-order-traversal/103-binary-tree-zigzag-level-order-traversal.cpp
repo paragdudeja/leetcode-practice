@@ -17,14 +17,14 @@ public:
         
         queue<TreeNode*> q;
         stack<int> reversed;
+        vector<int> level;
         bool is_reverse = false;
         
         q.push(root);
         
         while(!q.empty()) {
             int count = q.size();
-            vector<int> level;
-            
+            level.clear();
             for(int i = 0; i < count; i++) {
                 TreeNode* node = q.front();
                 q.pop();
