@@ -8,7 +8,8 @@ public:
         for(int i = n - 1; i >= 0; i--) {
             while(!st.empty() && temperatures[st.top()] <= temperatures[i])
                 st.pop();
-            nextGreater[i] = st.empty() ? 0 : st.top() - i;
+            if(st.size())
+                nextGreater[i] = st.top() - i;
             st.push(i);
         }
         return nextGreater;
