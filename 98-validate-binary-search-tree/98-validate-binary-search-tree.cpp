@@ -11,17 +11,17 @@
  */
 class Solution {
 public:
-    TreeNode *prev;
     bool isValidBST(TreeNode* root) {
-        return validate(root);
+        TreeNode *prev = NULL;
+        return validate(root, prev);
     }
     
-    bool validate(TreeNode* root) {
+    bool validate(TreeNode* root, TreeNode* &prev) {
         if(!root) return true;
         
-        if(!validate(root->left)) return false;
+        if(!validate(root->left, prev)) return false;
         if(prev && root->val <= prev->val) return false;
         prev = root;
-        return validate(root->right);
+        return validate(root->right, prev);
     }
 };
