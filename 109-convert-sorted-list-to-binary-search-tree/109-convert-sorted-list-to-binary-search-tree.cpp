@@ -31,11 +31,11 @@ public:
         
         ListNode *mid_prev = getMiddlePrev(head);
         ListNode *mid = mid_prev->next;
-        ListNode *mid_next = mid->next;
-        mid_prev->next = mid->next = nullptr;
+        // ListNode *mid_next = mid->next;
+        mid_prev->next = nullptr;
         TreeNode *root = new TreeNode(mid->val);
         root->left = sortedListToBST(head);
-        root->right = sortedListToBST(mid_next);
+        root->right = sortedListToBST(mid->next);
         return root;
     }
     
