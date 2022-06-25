@@ -14,11 +14,11 @@ public:
     void flatten(TreeNode* root) {
         while(root) {
             if(root->left) {
-                TreeNode *pre = root->left;
-                while(pre->right) {
-                    pre = pre->right;
-                }
-                pre->right = root->right;
+                TreeNode* predecessor = root->left;
+                while(predecessor->right) 
+                    predecessor = predecessor->right;
+                
+                predecessor->right = root->right;
                 root->right = root->left;
                 root->left = nullptr;
             }
