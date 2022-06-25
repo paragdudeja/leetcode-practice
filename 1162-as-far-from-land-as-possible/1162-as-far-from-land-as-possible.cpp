@@ -6,38 +6,32 @@ public:
         
         for(int i = 0; i < n; i++) {
             for(int j = 0; j < n; j++) {
-                if(grid[i][j] == 1) {
+                if(grid[i][j])
                     q.push({i, j});
-                    grid[i][j] = 0;
-                }
-                else {
-                    grid[i][j] = 1e9;
-                }
             }
         }
-        
-        if(q.size() == 0 || q.size() == n*n)
+        if(q.size() == 0 || q.size() == n*n) 
             return -1;
         
-        vector<int> dirs{0, 1, 0, -1, 0};
-        int mxDist = 0;
+        int cnt = 0;
+        int dirs[] = {0, 1, 0, -1, 0};
+        
+        // int cnt = 0;
         while(!q.empty()) {
             int count = q.size();
-            
-            for(int i = 0; i < count; i++) {
-                auto pos = q.front();
+            while(count--) {
+                auto point = q.front();
                 q.pop();
-                int x = pos.first, y = pos.second;
-                for(int j = 0; j < 4; j++) {
-                    int newx = x + dirs[j], newy = y + dirs[j+1];
-                    if(newx >= 0 && newy >= 0 && newx < n && newy < n && grid[newx][newy] > 1 + grid[x][y]) {
-                        q.push({newx, newy});
-                        grid[newx][newy] = 1 + grid[x][y];
-                        mxDist = max(mxDist, grid[newx][newy]);
-                    }
+                int x = point.first, y = point.second;
+                for(int i = 0; i < 4; i++) {
+                    int xx = x + dirs[i], yy = y + dirs[i+1];
+                    if(xx<0||xx>=n||yy<0||yy>=n||grid[xx][yy]==1) continue;
+                    grid[xx][yy] = 1;
+                    q.push({xx, yy});
                 }
             }
+            cnt += q.size() > 0;
         }
-        return mxDist;
+        return cnt;
     }
 };
