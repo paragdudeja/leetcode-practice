@@ -23,26 +23,26 @@ class Solution {
 public:
     Node* cloneGraph(Node* node) {\
         if(!node) return nullptr;
-        vector<Node*> copies(101, nullptr);
+        vector<Node*> clones(101, nullptr);
         
         // BFS
         queue<Node*> q;
         q.push(node);
-        copies[node->val] = new Node(node->val);
+        clones[node->val] = new Node(node->val);
         
         while(!q.empty()) {
             auto currentNode = q.front();
             q.pop();
-            
+            auto clonedNode = clones[currentNode->val];
             for(auto neighbor: currentNode->neighbors) {
-                if(copies[neighbor->val] == nullptr) {
-                    copies[neighbor->val] = new Node(neighbor->val);
+                if(clones[neighbor->val] == nullptr) {
+                    clones[neighbor->val] = new Node(neighbor->val);
                     q.push(neighbor);
                     
                 }
-                copies[currentNode->val]->neighbors.push_back(copies[neighbor->val]);
+                clonedNode->neighbors.push_back(clones[neighbor->val]);
             }
         }
-        return copies[node->val];
+        return clones[node->val];
     }
 };
