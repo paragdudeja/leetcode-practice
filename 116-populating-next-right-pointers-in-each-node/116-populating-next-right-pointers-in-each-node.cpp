@@ -26,26 +26,20 @@ public:
         
         while(!q.empty()) {
             int count = q.size();
-            for(int i = 0; i < count - 1; i++) {
+            Node *dummy = new Node(0);
+            for(int i = 0; i < count; i++) {
                 Node *node = q.front();
                 q.pop();
                 
-                node->next = q.front();
+                dummy->next = node;
+                dummy = dummy->next;;
+
                 if(node->left) {
                     q.push(node->left);
                 }
                 if(node->right) {
                     q.push(node->right);
                 }
-            }
-            Node *node = q.front();
-            q.pop();
-
-            if(node->left) {
-                q.push(node->left);
-            }
-            if(node->right) {
-                q.push(node->right);
             }
         }
         return root;
