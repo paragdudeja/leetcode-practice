@@ -13,14 +13,13 @@ public:
         path.push_back(source);
         if(source == target){
             result.push_back(path);
-            path.pop_back();
             return;
         }
         
         for(const int &neighbor: graph[source]) {
             dfs(neighbor, target, graph, path, result);
+            path.pop_back();
         }
-        path.pop_back();
     }
 
 };
