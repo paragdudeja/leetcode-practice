@@ -12,6 +12,27 @@
 class Solution {
 public:
     int kthSmallest(TreeNode* root, int k) {
+        TreeNode* node = nullptr;
+        helper(root, k, node);
+        return node->val;
+    }
+    
+    void helper(TreeNode *root, int &k, TreeNode* &node) {
+        if(!root) return;
+        helper(root->left, k, node);
+        
+        k--;
+        if(k == 0){
+            node = root;
+            return;
+        }
+        helper(root->right, k, node);
+    }
+    
+    /*
+    // TC : O(N)
+    // SC : O(N)
+    int kthSmallest(TreeNode* root, int k) {
         vector<int> v;
         inorder(root, v);
         return v[k-1];
@@ -23,4 +44,5 @@ public:
         v.push_back(root->val);
         inorder(root->right, v);
     }
+    */
 };
