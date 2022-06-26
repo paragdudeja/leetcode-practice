@@ -1,6 +1,18 @@
 class Solution {
 public:
+    vector<int> findDuplicates(vector<int>& nums) {
+        vector<int> dups;
+        
+        for(int i = 0; i < nums.size(); i++) {
+            int index = abs(nums[i]) - 1;
+            if(nums[index] < 0) dups.push_back(abs(nums[i]));
+            nums[index] = -nums[index];
+        }
+        return dups;
+        
+    }
     
+    /*
     // Hast set, duplicate if present in set
     // TC : O(N)
     // SC : O(N)
@@ -18,6 +30,7 @@ public:
         }
         return dups;
     }
+    */
     
     /*
     // Sort, check if consecutives are equal
@@ -38,5 +51,5 @@ public:
     
     // Brute: Two loops, nested
     // TC : O(N^2)
-    // SC : O(1);
+    // SC : O(1)
 };
