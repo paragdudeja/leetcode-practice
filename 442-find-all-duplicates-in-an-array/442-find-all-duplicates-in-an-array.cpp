@@ -5,7 +5,7 @@ public:
         
         for(int i = 0; i < nums.size(); i++) {
             int index = abs(nums[i]) - 1;
-            if(nums[index] < 0) dups.push_back(abs(nums[i]));
+            if(nums[index] < 0) dups.push_back(index + 1);
             nums[index] = -nums[index];
         }
         return dups;
