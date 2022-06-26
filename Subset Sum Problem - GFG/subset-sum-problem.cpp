@@ -11,23 +11,25 @@ class Solution{
 public:
     bool isSubsetSum(vector<int>arr, int sum){
         int N = arr.size();
-        bool dp[N+1][sum+1];
+        vector<bool> prev(sum+1);
+        prev[0] = true;
         
-        for(int i = 0; i <= N; i++) {
-            for(int j = 0; j <= sum; j++) {
-                if(j == 0)
-                    dp[i][j] = true;
-                else if(i == 0)
-                    dp[i][j] = false;
-                else {
+        for(int i = 1; i <= N; i++) {
+            vector<bool> current(sum+1);
+            current[0] = true;
+            
+            for(int j = 1; j <= sum; j++) {
                     if(arr[i-1] <= j)
-                        dp[i][j] = dp[i-1][j - arr[i-1]] || dp[i-1][j];
+                        current[j] = prev[j - arr[i-1]] || prev[j];
                     else
-                        dp[i][j] = dp[i-1][j];
-                }
+                        current[j] = prev[j];
             }
+            
+            for(int j = 1; j <= sum; j++)
+                prev[j] = current[j];
         }
-        return dp[N][sum];
+        
+        return prev[sum];
     }
 };
 
