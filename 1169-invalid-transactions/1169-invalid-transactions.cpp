@@ -1,14 +1,14 @@
 class Solution {
 public:
     vector<string> invalidTransactions(vector<string>& transactions) {
-        vector<string> name;
-        vector<int> time;
-        vector<int> amount;
-        vector<string> city;
+        vector<string> name, city;
+        vector<int> time, amount;
+        int n = transactions.size();
+        string s;
+        vector<string> res; 
         
-        for(string &t: transactions) {
-            stringstream ss(t);
-            string s;
+        for(auto &transaction: transactions) {
+            stringstream ss(transaction);
             getline(ss, s, ',');
             name.push_back(s);
             getline(ss, s, ',');
@@ -19,18 +19,15 @@ public:
             city.push_back(s);
         }
         
-        vector<string> invalid;
-        int n = name.size();
         for(int i = 0; i < n; i++) {
-            // cout << name[i] << ' ' << time[i] << ' ' << amount[i] << ' ' << city[i] << endl; 
             for(int j = 0; j < n; j++) {
-                if(amount[i]>1000 || (name[i] == name[j] && abs(time[i] - time[j]) <= 60 && city[i] != city[j])) {
-                    invalid.push_back(transactions[i]);
+                if(amount[i] > 1000 || (name[i]==name[j] && abs(time[i]-time[j])<=60 && city[i]!=city[j])) {
+                    res.push_back(transactions[i]);
                     break;
                 }
             }
         }
         
-        return invalid;
+        return res;
     }
 };
