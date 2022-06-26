@@ -1,5 +1,25 @@
 class Solution {
 public:
+    
+    // Hast set, duplicate if present in set
+    // TC : O(N)
+    // SC : O(N)
+    vector<int> findDuplicates(vector<int>& nums) {
+        unordered_set<int> s;
+        
+        vector<int> dups;
+        for(const int &num: nums) {
+            if(s.find(num) != s.end()) {
+                dups.push_back(num);
+            }
+            else {
+                s.insert(num);
+            }
+        }
+        return dups;
+    }
+    
+    /*
     // Sort, check if consecutives are equal
     // TC : O(N Log N)
     // SC : O(1)
@@ -14,7 +34,7 @@ public:
         }
         return dups;
     }
-    
+    */
     
     // Brute: Two loops, nested
     // TC : O(N^2)
