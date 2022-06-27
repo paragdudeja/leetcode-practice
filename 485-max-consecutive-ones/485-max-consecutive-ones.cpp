@@ -8,7 +8,9 @@ public:
                 start = i;
             } 
             else {
-                longest = max(longest, i - start);
+                if(i - start > longest) {
+                    longest = i - start;
+                }
             }
         }
         return longest;
