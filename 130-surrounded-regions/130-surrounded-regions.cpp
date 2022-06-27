@@ -14,15 +14,13 @@ public:
             dfs(m-1, j, m, n, board, 'V');
         }
         
-        for(int i = 1; i < m - 1; i++) {
-            for(int j = 1; j < n - 1; j++) {
-                dfs(i, j, m, n, board, 'X');
-            }
-        }
         
         for(int i = 0; i < m; i++) {
             for(int j = 0; j < n ; j++) {
-                if(board[i][j] == 'V') {
+                if(board[i][j] == 'O') {
+                    board[i][j] = 'X';
+                }
+                else if(board[i][j] == 'V') {
                     board[i][j] = 'O';
                 }
             }
