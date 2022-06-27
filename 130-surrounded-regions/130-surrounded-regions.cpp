@@ -5,13 +5,13 @@ public:
         int n = board[0].size();
         
         for(int i = 0; i < m; i++) {
-            dfs(i, 0, m, n, board, 'V');
-            dfs(i, n-1, m, n, board, 'V');
+            dfs(i, 0, m, n, board);
+            dfs(i, n-1, m, n, board);
         }
         
         for(int j = 0; j < n; j++) {
-            dfs(0, j, m, n, board, 'V');
-            dfs(m-1, j, m, n, board, 'V');
+            dfs(0, j, m, n, board);
+            dfs(m-1, j, m, n, board);
         }
         
         
@@ -27,12 +27,12 @@ public:
         }
     }
     
-    void dfs(int i, int j, int m, int n, vector<vector<char>>& board, char replacement) {
+    void dfs(int i, int j, int m, int n, vector<vector<char>>& board) {
         if(i < 0 || j < 0 || i == m || j == n || board[i][j] != 'O') return;
-        board[i][j] = replacement;
-        dfs(i + 1, j, m, n, board, replacement);
-        dfs(i - 1, j, m, n, board, replacement);
-        dfs(i, j + 1, m, n, board, replacement);
-        dfs(i, j - 1, m, n, board, replacement);
+        board[i][j] = 'V';
+        dfs(i + 1, j, m, n, board);
+        dfs(i - 1, j, m, n, board);
+        dfs(i, j + 1, m, n, board);
+        dfs(i, j - 1, m, n, board);
     }
 };
