@@ -8,22 +8,21 @@ class Solution
 	public:
 		vector<string>find_permutation(string S)
 		{
-		    vector<string> result;
+		    set<string> result;
 		    perm(0, S, result);
-		    sort(result.begin(), result.end());
-		    return result;
+		    vector<string> res;
+		    for(auto it: result)
+		        res.push_back(it);
+		    return res;
 		}
 		
-		void perm(int index, string &s, vector<string> &res) {
+		void perm(int index, string &s, set<string> &res) {
 		    if(index == s.size()) {
-		        res.push_back(s);
+		        res.insert(s);
 		        return;
 		    }
 		    
-		    unordered_set<char> us;
 		    for(int i = index; i < s.size(); i++) {
-		        if(us.count(s[i])) continue;
-		        us.insert(s[i]);
 		        swap(s[index], s[i]);
 		        perm(index + 1, s, res);
 		        swap(s[index], s[i]);
