@@ -16,12 +16,13 @@ class Solution {
         vector<int> current;
         vector<vector<int>> result;
         sort(candidates.begin(), candidates.end());
-        vector<int> updated;
-        for(int i = 0; i < candidates.size(); i++) {
-            if(i > 0 && candidates[i] == candidates[i-1]) continue;
-            updated.push_back(candidates[i]);
+        int count = 1;
+        for(int i = 1; i < candidates.size(); i++) {
+            if(candidates[i] != candidates[count-1])
+                candidates[count++] = candidates[i];
         }
-        solve(0, target, updated, current, result);
+        candidates.resize(count);
+        solve(0, target, candidates, current, result);
         return result;
     }
     
