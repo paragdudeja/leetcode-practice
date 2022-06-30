@@ -3,14 +3,15 @@ public:
     int minMoves2(vector<int>& nums) {
         sort(nums.begin(), nums.end());
         int n = nums.size();
-        if(n&1) {
+        // if(n&1) {
             int mid = nums[n/2];
             int moves = 0;
             for(auto &num: nums) {
                 moves += abs(num - mid);
             }
             return moves;
-        }
+        // }
+        /*
         else {
             int mid1 = nums[n/2 - 1];
             int mid2 = nums[n/2];
@@ -21,5 +22,6 @@ public:
             }
             return min(moves1,  moves2);
         }
+        */
     }
 };
