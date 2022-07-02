@@ -7,6 +7,27 @@
 class Solution {
 public:
     int mctFromLeafValues(vector<int>& arr) {
+        int res = 0;
+        vector<int> stack = {INT_MAX};
+        for (int a : arr) {
+            while (stack.back() <= a) {
+                int mid = stack.back();
+                stack.pop_back();
+                res += mid * min(stack.back(), a);
+            }
+            stack.push_back(a);
+        }
+        for (int i = 2; i < stack.size(); ++i) {
+            res += stack[i] * stack[i - 1];
+        }
+        return res;
+    }
+    
+    /*
+    // MCM
+    // TC : O(N*N*N) i.e. O(N^3)
+    // SC : O(N*N) i.e. O(N^2)
+    int mctFromLeafValues(vector<int>& arr) {
         int n = arr.size();
         vector<vector<vector<int>>> dp(n+1, vector<vector<int>>(n+1, {-1,-1}));
         vector<int> solution = solve(0, n-1, arr, dp);
@@ -34,4 +55,5 @@ public:
         }
         return dp[left][right] = min_res;
     }
+    */
 };
