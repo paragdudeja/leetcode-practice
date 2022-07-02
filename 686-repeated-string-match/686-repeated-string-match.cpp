@@ -1,20 +1,20 @@
 class Solution {
 public:
-    int repeatedStringMatch(string a, string b) {
-        // if(a.length() > b.length()) r
-        string tmp;
-        int count = b.length() / a.length();
-        for(int i = 0; i < count; i++) {
-            tmp += a;
+    int repeatedStringMatch(string A, string B) {
+        string s="";
+        int count = 0;
+        while(s.size()<B.size())
+        {
+            s+=A;
+            count++;
         }
-        // cout << tmp << endl;
-        if(tmp.find(b) != string::npos) return count;
+        if(s.find(B)!=string::npos)
+            return count;
+        s+=A;
         count++;
-        tmp += a;
-        if(tmp.find(b) != string::npos) return count;
-        count++;
-        tmp += a;
-        if(tmp.find(b) != string::npos) return count;
+        if(s.find(B)!=string::npos)
+            return count;
+        
         return -1;
     }
 };
