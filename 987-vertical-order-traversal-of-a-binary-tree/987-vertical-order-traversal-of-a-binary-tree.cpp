@@ -12,13 +12,14 @@
 class Solution {
 public:
     vector<vector<int>> verticalTraversal(TreeNode* root) {
-        map<int, map<int, multiset<int> > > mp;    
+        map<int, map<int, vector<int> > > mp;    
         solve(root, 0, 0, mp);
         
         vector<vector<int>> result;
         for(auto it1: mp) {
             vector<int> level;
             for(auto it2: it1.second) {
+                sort(it2.second.begin(), it2.second.end());
                 for(auto it3: it2.second) {
                     level.push_back(it3);
                 }
@@ -28,9 +29,9 @@ public:
         return result;
     }
     
-    void solve(TreeNode *root, int row, int col, map<int, map<int, multiset<int> > > &mp) {
+    void solve(TreeNode *root, int row, int col, map<int, map<int, vector<int> > > &mp) {
         if(!root) return;
-        mp[col][row].insert(root->val);
+        mp[col][row].push_back(root->val);
         solve(root->left, row+1, col-1, mp);
         solve(root->right, row+1, col+1, mp);
     }
