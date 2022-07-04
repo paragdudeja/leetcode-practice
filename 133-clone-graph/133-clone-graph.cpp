@@ -33,6 +33,7 @@ public:
         while(!q.empty()) {
             auto currentNode = q.front();
             q.pop();
+            
             auto clonedNode = clones[currentNode->val];
             for(auto neighbor: currentNode->neighbors) {
                 if(clones[neighbor->val] == nullptr) {
