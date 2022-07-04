@@ -22,8 +22,8 @@ class Solution
         int ans = INT_MAX;
         
         for(int i = 1; i <= f; i++) {
-            int temp = 1 + max(solve(e-1, i-1), solve(e, f - i));
-            ans = min(ans, temp);
+            int temp = max(solve(e-1, i-1), solve(e, f - i));
+            ans = min(ans, 1 + temp);
         }
         return dp[e][f] = ans;
     }
