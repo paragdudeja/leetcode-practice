@@ -9,7 +9,7 @@ using namespace std;
 
 bool isSafe(int node, int color, int n, bool graph[101][101], vector<int> &colors) {
     for(int i = 0; i < n; i++) {
-        if(graph[node][i] && colors[i] == color)
+        if(i!=node && graph[node][i] && colors[i] == color)
             return false;
     }
     return true;
@@ -33,7 +33,6 @@ bool colorNode(int node, int n, int m, bool graph[101][101], vector<int> &colors
 
 bool graphColoring(bool graph[101][101], int m, int n) {
     vector<int> colors(n);
-    
     return colorNode(0, n, m, graph, colors);
 }
 
