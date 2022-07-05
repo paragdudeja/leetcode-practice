@@ -31,7 +31,8 @@ int longestSubstrDistinctChars (string S)
             }
             start++;
         }
-        seen[S[i] - 'a'] = true;
+        else 
+            seen[S[i] - 'a'] = true;
         longest = max(longest, i - start + 1);
     }
     return longest;
