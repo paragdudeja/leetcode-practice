@@ -11,6 +11,7 @@ class Solution{
 public:
     int longestSubsequence(int N, int A[])
     {
+        /*
         vector<int> dp(N, 1);
         int mx = 1;
         
@@ -23,6 +24,13 @@ public:
             mx = max(mx, dp[i]);
         }
         return mx;
+        */
+        int dp[10001] = {0}, ans = 0;
+        for(int i=0; i<N; i++){
+            dp[A[i]] = max(1+dp[A[i]-1], 1+dp[A[i]+1]);
+            ans = max(ans, dp[A[i]]);
+        }
+        return ans;
     }
 };
 
