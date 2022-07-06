@@ -1,5 +1,7 @@
 class Solution {
 public:
+    // TC : O(Log n)
+    // SC : O(1)
     int mySqrt(int x) {
         if(x <= 1) return x;
         int low = 1, high = x,  ans = x;
