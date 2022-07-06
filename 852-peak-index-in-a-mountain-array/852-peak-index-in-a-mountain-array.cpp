@@ -1,5 +1,7 @@
 class Solution {
 public:
+    // TC : O(Log N)
+    // SC : O(1)
     int peakIndexInMountainArray(vector<int>& arr) {
         int low = 0, high = arr.size() - 1;
         while(low < high) {
