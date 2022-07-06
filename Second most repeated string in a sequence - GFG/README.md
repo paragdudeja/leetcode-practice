@@ -1,5 +1,5 @@
 # Second most repeated string in a sequence
-## Easy 
+##  Easy 
 <div class="problem-statement">
                 <p></p><p><span style="font-size:18px">Given a sequence of strings, the task is to find out the second most repeated (or frequent) string in the given sequence.</span></p>
 
