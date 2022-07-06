@@ -1,5 +1,7 @@
 class Solution {
 public:
+    // TC : O(M*N)
+    // SC : O(N)
     int uniquePaths(int m, int n) {
         vector<int> curr(n), prev(n);
         prev[0] = 1;
