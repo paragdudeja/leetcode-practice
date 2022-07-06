@@ -14,12 +14,35 @@ class Solution
             mp[arr[i]]++;
         }
         
-        vector<pair<int, string>> v;
-        for(auto it: mp) v.push_back({it.second, it.first});
         
-        sort(v.begin(), v.end());
-        int s = v.size();
-        return v[s-2].second;
+        int mx1 = INT_MIN, mx2 = INT_MIN;
+        string ans;
+        for(auto it: mp) {
+            if(it.second > mx1) {
+                mx2 = mx1;
+                mx1 = it.second;
+            }
+            else if(it.second > mx2) {
+                // ans = it.first;
+                mx2 = it.second;
+            }
+        }
+        
+        for(auto it: mp) {
+            if(it.second == mx2) {
+                ans = it.first;
+                break;
+            }
+        } 
+        
+        return ans;
+        
+        // vector<pair<int, string>> v;
+        // for(auto it: mp) v.push_back({it.second, it.first});
+        
+        // sort(v.begin(), v.end());
+        // int s = v.size();
+        // return v[s-2].second;
     }
 };
 
