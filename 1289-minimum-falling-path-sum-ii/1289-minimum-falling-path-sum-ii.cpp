@@ -1,27 +1,33 @@
 class Solution {
 public:
     int minFallingPathSum(vector<vector<int>>& grid) {
-        int n = grid.size();
-        int dp[n][n];
-        for(int j = 0; j < n; j++) {
-            dp[0][j] = grid[0][j];
-        }        
+        int n = grid.size();   
         
         for(int i = 1; i < n; i++) {
+            int min1 = INT_MAX, min2 = INT_MAX;
             for(int j = 0; j < n; j++) {
-                int min_val = INT_MAX;
-                for(int k = 0; k < n; k++) {
-                    if(k != j && dp[i-1][k] < min_val) {
-                        min_val = dp[i-1][k];
-                    }
+                if(grid[i-1][j] < min1) {
+                    min2 = min1;
+                    min1 = grid[i-1][j];
                 }
-                dp[i][j] = grid[i][j] + min_val;
+                else if(grid[i-1][j] < min2){
+                    min2 = grid[i-1][j];
+                }
+            }
+            
+            for(int j = 0; j < n; j++) {
+                if(grid[i-1][j] == min1) {
+                    grid[i][j] += min2;
+                }
+                else {
+                    grid[i][j] += min1;
+                }
             }
         }
         
         int ans = INT_MAX;
         for(int j = 0; j < n; j++) {
-            ans = min(ans, dp[n-1][j]);
+            ans = min(ans, grid[n-1][j]);
         }
         return ans;
     }
