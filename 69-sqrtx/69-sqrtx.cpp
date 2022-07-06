@@ -1,19 +1,18 @@
 class Solution {
 public:
     int mySqrt(int x) {
-        if(x == 0) return 0;
+        if(x <= 1) return x;
         int low = 1, high = x,  ans = x;
-        while(low <= high) {
+        while(low < high) {
             int mid = low + (high - low)/2;
-            if(mid <= x/mid) {
-                ans = mid;
-                low = mid + 1;
+            if(mid > x/mid) {
+                high = mid;
             }
             else {
-                high = mid-1;
+                low = mid + 1;
             }
         }
-        return ans;
+        return low - 1;
     }
     /*
     // TC : O(sqrt(N))
