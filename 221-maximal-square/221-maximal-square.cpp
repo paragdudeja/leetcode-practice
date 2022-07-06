@@ -1,11 +1,11 @@
 class Solution {
 public:
     int maximalSquare(vector<vector<char>>& matrix) {
-        // if(matrix.empty()) return 0;
+        if(matrix.empty()) return 0;
         int m = matrix.size();
-        if(m == 0) return 0;
+        // if(m == 0) return 0;
         int n = matrix[0].size();
-        if(n == 0) return 0;
+        // if(n == 0) return 0;
         
         int dp[m][n];
         int mxSide = 0;
