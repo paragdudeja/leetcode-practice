@@ -1,19 +1,11 @@
 class Solution {
 public:
     string reverseOnlyLetters(string s) {
-        string letters;
-        for(char &c: s) {
-            if(isalpha(c)) {
-                letters.push_back(c);
-            }
-        }
-        reverse(letters.begin(), letters.end());
-        
-        int k = 0;
-        for(char &c: s) {
-            if(isalpha(c)) {
-                c = letters[k++];
-            }
+        int i = 0, j = s.size()-1;
+        while(i < j) {
+            while(i < j && !isalpha(s[i])) i++;
+            while(i < j && !isalpha(s[j])) j--;
+            swap(s[i++], s[j--]);
         }
         return s;
     }
