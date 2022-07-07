@@ -1,25 +1,23 @@
 class Solution {
 public:
     bool isInterleave(string s1, string s2, string s3) {
-        int m = s1.size();
-        int n = s2.size();
-        int t = m + n;
-        if(s3.size() != t) return false;
-        vector<vector<int>> dp(m+1, vector<int>(n+1, -1));
-        return solve(s1, m, s2, n, s3, t, dp);
-    }
+        if(s3.length() != s1.length() + s2.length())
+        return false;
     
-    bool solve(string &s1, int m, string &s2, int n, string &s3, int t, vector<vector<int>> &dp) {
-        if(t == 0) return true;
-        if(dp[m][n] != -1) return dp[m][n];
-        if(m > 0 && n > 0 && s1[m-1] == s3[t-1] && s2[n-1] == s3[t-1])
-            return dp[m][n] = solve(s1, m-1, s2, n, s3, t-1, dp) || solve(s1, m, s2, n-1, s3, t-1, dp);
-        
-        if(m > 0 && s1[m-1] == s3[t-1])
-            return dp[m][n] = solve(s1, m-1, s2, n, s3, t-1, dp);
-        else if(n > 0 && s2[n-1] == s3[t-1])
-            return dp[m][n] = solve(s1, m, s2, n-1, s3, t-1, dp);
-        else 
-            return dp[m][n] = false;
-    } 
+        bool dp[s1.length()+1][s2.length()+1];
+
+        for(int i=0; i<s1.length()+1; i++)
+            for(int j=0; j< s2.length()+1; j++){
+                if(i==0 && j==0)
+                    dp[i][j] = true;
+                else if(i == 0)
+                    dp[i][j] = (dp[i][j-1] && s2[j-1] == s3[i+j-1]);
+                else if(j == 0)
+                    dp[i][j] = (dp[i-1][j] && s1[i-1] == s3[i+j-1]);
+                else
+                    dp[i][j] = (dp[i-1][j] && s1[i-1] == s3[i+j-1] ) || (dp[i][j-1] && s2[j-1] == s3[i+j-1] );
+            }
+
+        return dp[s1.length()][s2.length()];
+    }
 };
