@@ -16,9 +16,10 @@ public:
         
         for(auto &emp: employees) {
             scores[emp->id] = emp->importance;
-            for(auto &sub: emp->subordinates) {
-                mp[emp->id].push_back(sub);
-            }
+            // for(auto &sub: emp->subordinates) {
+            //     mp[emp->id].push_back(sub);
+            // }
+            mp[emp->id] = emp->subordinates;
         }
         
         int total = scores[id];
