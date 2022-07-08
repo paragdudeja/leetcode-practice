@@ -1,5 +1,17 @@
 class Solution {
 public:
+    // TC : Min(M, N)
+    // SC = 1
+    int uniquePaths(int m, int n) {
+        long long res = 1;
+        int N = m + n - 2;
+        int r = min(m, n) - 1;
+        for(int i = 1 ; i <= r; i++)
+            res = res * (N - i + 1) / i;
+        return res;
+    }
+    
+    /*
     // TC : O(M*N)
     // SC : O(N)
     int uniquePaths(int m, int n) {
@@ -15,6 +27,7 @@ public:
         }
         return prev[n-1];
     }
+    */
     
     /*
     // TC: O(M*N)
