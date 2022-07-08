@@ -19,15 +19,12 @@ public:
         if(dp[index][target][prev] != -1) return dp[index][target][prev];
         
         if(houses[index] != 0) { // already painted
-            if(prev != houses[index]) {
-                target--;
-            }
-            return solve(index+1, target, houses[index], m, n, houses, cost);
+            return solve(index+1, target - (prev != houses[index]), houses[index], m, n, houses, cost);
         }
         
         int ans = 1e9;
         for(int i = 1; i <= n; i++) {
-            ans = min(ans, cost[index][i-1] + solve(index+1, target - (prev != i ? 1 : 0), i, m, n, houses, cost));
+            ans = min(ans, cost[index][i-1] + solve(index+1, target - (prev != i), i, m, n, houses, cost));
         }
         
         return dp[index][target][prev] = ans;        
