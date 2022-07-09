@@ -6,7 +6,7 @@ public:
         pq.push({nums[0], 0});
         
         for(int i = 1; i < nums.size(); i++) {
-            while(!pq.empty() && i - pq.top().second > k) {
+            while(i - pq.top().second > k) {
                 pq.pop();
             }
             int sum = pq.top().first + nums[i];
