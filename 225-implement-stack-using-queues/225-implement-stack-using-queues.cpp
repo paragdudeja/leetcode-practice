@@ -1,14 +1,15 @@
 class MyStack {
-public:
+private:
     queue<int> q;
+public:
     MyStack() {
         
     }
     
     void push(int x) {
+        int n = q.size();
         q.push(x);
-        int count = q.size();
-        for(int i = 0; i < count - 1; i++) {
+        for(int i = 0; i < n; i++) {
             q.push(q.front());
             q.pop();
         }
