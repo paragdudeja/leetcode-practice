@@ -5,11 +5,11 @@ public:
         vector<int> dp(amount+1, amount+1);
         dp[0] = 0;
         
-        for(int i = 1; i <= amount; i++) {
-            for(const int &coin: coins) {
-                if(coin <= i) {
+        for(const int &coin: coins) {
+            for(int i = coin; i <= amount; i++) {
+                // if(coin <= i) {
                     dp[i] = min(dp[i], dp[i - coin] + 1);
-                }
+                // }
             }
         }
         
