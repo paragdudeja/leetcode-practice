@@ -1,5 +1,20 @@
 class Solution {
 public:
+    // TC : O(N)
+    // SC : O(1)
+    int minCostClimbingStairs(vector<int>& cost) {        
+        int prev1 = 0, prev2 = 0, current = 0;
+        for(const int &cst: cost) {
+            current = min(prev1, prev2) + cst;
+            prev2 = prev1;
+            prev1 = current;
+        }
+        return min(prev1, prev2);
+    }
+    
+    /*
+    // TC : O(N)
+    // SC : O(1)
     int minCostClimbingStairs(vector<int>& cost) {
         cost.push_back(0);
         
@@ -12,6 +27,7 @@ public:
         }
         return current;
     }
+    */
     
     /*
     // TC : O(N)
