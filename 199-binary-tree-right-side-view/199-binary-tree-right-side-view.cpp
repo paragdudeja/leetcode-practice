@@ -11,6 +11,7 @@
  */
 class Solution {
 public:
+    /*
     // Iterative/BFS
     
     // TC : O(N)
@@ -42,8 +43,8 @@ public:
         }
         return ans;
     }
-    
-    /*
+    */
+
     // Recursive/DFS
     
     // TC : O(N)
@@ -63,5 +64,4 @@ public:
         dfs(root->right, level + 1, res);
         dfs(root->left, level + 1, res);        
     }
-    */
 };
