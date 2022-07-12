@@ -1,5 +1,7 @@
 class Solution {
 public:
+    // TC: O(N^3) + O(N LogN)
+    // SC: O(M*4) (M is number of quads)
     vector<vector<int>> fourSum(vector<int>& nums, int target) {
         sort(nums.begin(), nums.end());
         vector<vector<int>> ans;
