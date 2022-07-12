@@ -1,33 +1,40 @@
 class Solution {
 public:
+    // TC : O(N^3 * LogN) + O(N logN) (sort)
+    // SC : O(M*4) (M is number of quads)
     vector<vector<int>> fourSum(vector<int>& nums, int target) {
+        set<vector<int>> sv;
         sort(nums.begin(), nums.end());
-        vector<vector<int>> res;
-        long long t = target;
+        int n = nums.size();
         
-        for(int first = 0; first < nums.size(); first++){
-            for(int second = first + 1; second < nums.size(); second++) {
-                int third = second + 1;
-                int fourth = nums.size() - 1;
-                while(third < fourth) {
-                    long long sum = (long long)nums[first] + nums[second] + nums[third] + nums[fourth];
-                    if(sum == t) {
-                        res.push_back({nums[first], nums[second], nums[third], nums[fourth]});
-                        while(third < fourth && nums[third]==nums[third+1]) third++;
-                        while(third < fourth && nums[fourth]==nums[fourth-1]) fourth--;
-                        third++;
-                        fourth--;
-                        
+        for(int i = 0; i < n; i++) {
+            for(int j = i + 1; j < n; j++) {
+                for(int k = j + 1; k < n; k++) {
+                    long long x = (long long)target - (long long)nums[i] - (long long)nums[j] - (long long)nums[k];
+                    if(binarySearch(nums, k+1, n-1, x)) {
+                        sv.insert({nums[i], nums[j], nums[k], (int)x});
                     }
-                    else if(sum < t)
-                        third++;
-                    else
-                        fourth--;
                 }
-                while(second + 1 < nums.size() && nums[second]==nums[second+1]) second++;
             }
-            while(first + 1 < nums.size() && nums[first]==nums[first+1]) first++;
         }
+        
+        vector<vector<int>> res(sv.begin(), sv.end());
         return res;
+    }
+    
+    bool binarySearch(vector<int> &nums, int low, int high, long long x) {
+        while(low <= high) {
+            int mid = low + (high - low)/2;
+            if(nums[mid] == x) {
+                return true;
+            }
+            else if(nums[mid] < x) {
+                low = mid + 1;
+            }
+            else {
+                high = mid - 1;
+            }
+        }
+        return false;
     }
 };
