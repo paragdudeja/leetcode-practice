@@ -5,19 +5,19 @@ public:
         int sum =accumulate(nums.begin(),nums.end(),0);
         vector<bool>vis(nums.size(),false);
         if(sum%k!=0)
-        return false;
+            return false;
         int s=sum/k;
         sort(begin(nums),end(nums),greater<int>());// For avoid extra calculation
         return is_possible(nums,0,s,k,0,vis);
     }
     bool is_possible(vector<int>&nums,int curr,int sum,int k,int start,vector<bool>&vis)
     {
-        if(k==1)
+        if(k==1) // k-1 buckets full
             return true;
         if(start>=nums.size()) //This line is important to avoid tle
            return false;
         if(curr==sum)
-                return is_possible(nums,0,sum,k-1,0,vis);
+            return is_possible(nums,0,sum,k-1,0,vis);
 
         for(int i=start;i<nums.size();i++)
         {
