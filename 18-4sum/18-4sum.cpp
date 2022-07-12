@@ -1,5 +1,38 @@
 class Solution {
 public:
+    vector<vector<int>> fourSum(vector<int>& nums, int target) {
+        sort(nums.begin(), nums.end());
+        vector<vector<int>> ans;
+        int n = nums.size();
+        
+        for(int first = 0; first < n; first++) {
+            for(int second = first+1; second < n; second++) {
+                int third = second + 1, fourth = n - 1;
+                while(third < fourth) {
+                    long long sum = (long long)nums[first] + nums[second] + nums[third] + nums[fourth];
+                    if(sum == target) {
+                        ans.push_back({nums[first], nums[second], nums[third], nums[fourth]});
+                        while(third < fourth && nums[third] == nums[third+1]) third++;
+                        while(third < fourth && nums[fourth] == nums[fourth-1]) fourth--;
+                        third++;
+                        fourth--;
+                    }
+                    else if(sum < target) {
+                        third++;
+                    }
+                    else {
+                        fourth--;
+                    }
+                }
+                while(second + 1 < n && nums[second] == nums[second+1]) second++;
+            }
+            while(first + 1 < n && nums[first] == nums[first+1]) first++;
+        }
+        
+        return ans;
+    }
+    
+    /*
     // TC : O(N^3 * LogN) + O(N logN) (sort)
     // SC : O(M*4) (M is number of quads)
     vector<vector<int>> fourSum(vector<int>& nums, int target) {
@@ -37,4 +70,5 @@ public:
         }
         return false;
     }
+    */
 };
