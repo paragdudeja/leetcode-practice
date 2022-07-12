@@ -1,5 +1,26 @@
 class Solution {
 public:
+    // TC : O(N)
+    // SC : O(N) 
+    int longestConsecutive(vector<int>& nums) {
+        int longest = 0;
+        unordered_set<int> hashset(nums.begin(), nums.end());
+        
+        for(const int &num: nums) {
+            if(hashset.find(num-1) == hashset.end()) {
+                int start = num;
+                int end = start + 1;
+                while(hashset.find(end) != hashset.end()) {
+                    end++;
+                }
+                longest = max(longest, end - start);
+            }
+        }
+        
+        return longest;
+    }
+    
+    /*
     // TC : O(N Log N)
     // SC : O(1)
     int longestConsecutive(vector<int>& nums) {
@@ -24,4 +45,5 @@ public:
         
         return longest;
     }
+    */
 };
