@@ -111,13 +111,13 @@ public:
     
     
     void helperLeaves(Node* root, vector<int>& ans) {
-        if(!root) return;
+        // if(!root) return;
         if(isLeaf(root)) {
             ans.push_back(root->data);
             return;
         }
-        helperLeaves(root->left, ans);
-        helperLeaves(root->right, ans);
+        if(root->left) helperLeaves(root->left, ans);
+        if(root->right) helperLeaves(root->right, ans);
     }
     
     void helperLeft(Node *root, vector<int> &ans) {
