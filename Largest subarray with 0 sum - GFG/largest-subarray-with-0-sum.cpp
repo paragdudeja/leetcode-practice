@@ -10,24 +10,47 @@ using namespace std;
 
 class Solution{
     public:
+    // TC : O(N)
+    // SC : O(N)
     int maxLen(vector<int>&A, int n)
     {   
+        int longest = 0;
         unordered_map<int, int> mp;
         int sum = 0;
-        int longest = 0;
-        
         mp[0] = -1;
+        
         for(int i = 0; i < n; i++) {
             sum += A[i];
-            if(mp.find(sum) != mp.end()) {
-                longest = max(longest, i - mp[sum]);
+            if(mp.find(sum) == mp.end()) {
+                mp[sum] = i;
             }
             else {
-                mp[sum] = i;
+                longest = max(longest, i - mp[sum]);
             }
         }
         return longest;
     }
+    
+    
+    /*
+    Brute
+    // TC : O(N^2)
+    // SC : O(1)
+    int maxLen(vector<int>&A, int n) {
+        int longest = 0;
+        for(int i = 0; i < n; i++) {
+            int sum = 0;
+            for(int j = i; j < n; j++) {
+                sum += A[j];
+                if(sum == 0) {
+                    longest = max(longest, j - i + 1);
+                }
+            }
+        }
+        return longest;
+    }
+    
+    */
 };
 
 
