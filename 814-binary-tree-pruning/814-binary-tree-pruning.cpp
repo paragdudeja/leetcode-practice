@@ -15,6 +15,20 @@ public:
         if(!root) return nullptr;
         root->left = pruneTree(root->left);
         root->right = pruneTree(root->right);
+        if(!root->left && !root->right) {
+            if(root->val == 0) return nullptr;
+            else return root;
+        }
+        return root;
+    }
+    
+    /*
+    // TC : O(N^2)
+    // SC : O(N)
+    TreeNode* pruneTree(TreeNode* root) {
+        if(!root) return nullptr;
+        root->left = pruneTree(root->left);
+        root->right = pruneTree(root->right);
         bool left = check(root->left);
         bool right = check(root->right);
         if(!left) root->left = nullptr;
@@ -27,4 +41,5 @@ public:
         if(!root) return false;
         return root->val == 1 || check(root->left) || check(root->right);
     }
+    */
 };
