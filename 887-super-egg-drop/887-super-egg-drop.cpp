@@ -1,6 +1,6 @@
 class Solution {
 public:
-    // TC : O(K*N*N) i.e. O(K * N^2)
+    // TC : O(K*N*LOgN)
     // SC : O(K * N)
     int superEggDrop(int k, int n) {
         vector<vector<int>> dp(k+1, vector<int>(n+1, -1));
