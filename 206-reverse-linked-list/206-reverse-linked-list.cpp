@@ -10,6 +10,18 @@
  */
 class Solution {
 public:
+    ListNode* reverseList(ListNode* head) {
+        if(!head || !head->next) return head;
+        
+        ListNode *rest_head = reverseList(head->next);
+        ListNode *rest_tail = head->next;
+        
+        rest_tail->next = head;
+        head->next = nullptr
+            ;
+        return rest_head;
+    }
+    /*
     // Iterative
     // TC : O(N)
     // SC : O(1)
@@ -18,9 +30,11 @@ public:
         while(curr) {
             next = curr->next;
             curr->next = pre;        
+            
             pre = curr;
             curr = next;
         }
         return pre;
     }
+    */
 };
