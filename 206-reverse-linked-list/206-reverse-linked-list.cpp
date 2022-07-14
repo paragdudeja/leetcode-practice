@@ -10,6 +10,21 @@
  */
 class Solution {
 public:
+    // Recursive : Method 2
+    // TC : O(N)
+    // SC : O(1) / O(N) rec. stack
+    ListNode* reverseList(ListNode* head, ListNode *prev = nullptr) {
+        if(!head) return prev;
+        
+        ListNode *next = head->next;
+        head->next = prev;
+        return reverseList(next, head);
+    }
+    
+    /*
+    // Recursive : Method 1
+    // TC : O(N)
+    // SC : O(1) / O(N) rec. stack
     ListNode* reverseList(ListNode* head) {
         if(!head || !head->next) return head;
         
@@ -21,6 +36,8 @@ public:
             ;
         return rest_head;
     }
+    */
+    
     /*
     // Iterative
     // TC : O(N)
