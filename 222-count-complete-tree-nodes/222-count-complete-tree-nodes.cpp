@@ -11,6 +11,8 @@
  */
 class Solution {
 public:
+    // TC : O(Log^2 N) or O( (Log N)^2 )
+    // SC : O(Log N) (recursion stack)
     int countNodes(TreeNode* root) {
         if(!root) return 0;
         
@@ -18,7 +20,7 @@ public:
         int rightHeight = getRightHeight(root);
         
         if(leftHeight == rightHeight) {
-            return (1 << leftHeight) - 1;
+            return (1 << leftHeight) - 1; // pow(2, leftHeight) - 1;
         }
         else {
             return 1 + countNodes(root->left) + countNodes(root->right);
