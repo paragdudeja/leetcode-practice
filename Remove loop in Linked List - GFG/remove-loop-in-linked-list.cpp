@@ -84,6 +84,8 @@ class Solution
         if(!head || !head->next) return;
         // Node *dummy = new Node();
         // dummy->next = head;
+        Node *pre = NULL;  
+        
         Node *slow = head->next;
         Node *fast = head->next->next;
         while(fast && fast->next) {
@@ -94,22 +96,22 @@ class Solution
         
         if(slow != fast)
             return;
-        Node *pre = NULL;    
         slow = head;
-        if(fast == head) head = NULL;
+        // if(fast == head) head = NULL;
         while(slow != fast) {
             pre = fast;
             slow = slow->next;
             fast = fast->next;
         }
-        if(pre) pre->next = NULL;
-        else {
-            while(slow->next != fast) {
-                slow = slow->next;
+        if(slow == head) {
+            while(fast->next != slow) {
+                fast = fast->next;
             }
-            slow->next = NULL;
+            fast->next = NULL;
         }
-        // else head = pre;
+        else {
+            pre->next = NULL;
+        }
     }
 };
 
