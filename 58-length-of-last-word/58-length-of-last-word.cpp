@@ -5,10 +5,7 @@ public:
         int counter = 0;
         for(const char &c: s) {
             if(c == ' ') counter = 0;
-            else {
-                ++counter;
-                ans = counter;
-            }
+            else ans = ++counter;
         }
         return ans;
     }
