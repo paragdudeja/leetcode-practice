@@ -6,6 +6,18 @@ using namespace std;
 //User function template for C++
 class Solution{
 public:
+    int rowWithMax1s(vector<vector<int> > arr, int n, int m) {
+        int col = m-1;
+        int mxRow = -1;
+        for(int i = 0; i < n; i++) {
+            while(col >= 0 && arr[i][col] == 1) {
+                col--;
+                mxRow = i;
+            }
+        }
+        return mxRow;
+    }
+    /*
     int lowerBound(vector<int> &arr, int n, int x) {
         int ans = n;
         int low = 0, high = n-1;
@@ -36,6 +48,7 @@ public:
 	    }
 	    return mxrow;
 	}
+	*/
 
 };
 
