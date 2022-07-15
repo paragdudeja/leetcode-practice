@@ -11,6 +11,18 @@
  */
 class Solution {
 public:
+    int rollingSum(TreeNode* r, int sum = 0) {
+        if (r == nullptr) return sum;
+        r->val += rollingSum(r->right, sum);
+        return rollingSum(r->left, r->val);
+    }
+    
+    TreeNode* bstToGst(TreeNode* r) {
+        rollingSum(r);
+        return r;
+    }
+    
+    /*
     TreeNode* bstToGst(TreeNode* root) {
         int sum = 0;
         helper(root, sum);
@@ -24,4 +36,5 @@ public:
         sum = root->val;
         helper(root->left, sum);
     }
+    */
 };
