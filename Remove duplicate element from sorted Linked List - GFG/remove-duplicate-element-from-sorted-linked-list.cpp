@@ -68,8 +68,9 @@ struct Node {
 Node *removeDuplicates(Node *head)
 {
     // your code goes here
+    if(!head) return head;
     Node* curr = head;
-    while(curr && curr->next) {
+    while(curr->next) {
         if(curr->next->data == curr->data) {
             curr->next = curr->next->next;
         }
