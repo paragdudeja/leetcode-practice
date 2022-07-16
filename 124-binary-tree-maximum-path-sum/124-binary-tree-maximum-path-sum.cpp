@@ -18,14 +18,11 @@ public:
     }
     
     int helper(TreeNode* root, int &ans) {
-        if(!root) return 0;
-        
-        int left = helper(root->left, ans);
-        int right = helper(root->right, ans);
-        
-        int currPathSum = root->val + max(left, 0) + max(right, 0);
-        ans = max(ans, currPathSum);
-        
-        return root->val + max({left, right, 0});
+        if (root == NULL) return 0;
+    
+        int leftSum = max(0, helper(root->left, ans));
+        int rightSum = max(0, helper(root->right, ans));
+        ans = max(ans, root->val + leftSum + rightSum);
+        return root->val + max(leftSum, rightSum);
     }
 };
