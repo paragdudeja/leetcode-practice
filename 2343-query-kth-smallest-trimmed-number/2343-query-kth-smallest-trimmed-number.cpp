@@ -15,8 +15,15 @@ public:
                 string curr = num.substr(start);
                 v.push_back({curr, i++});
             }
+            // sort(v.begin(), v.end(), [](const auto &v1, const auto &v2){
+            //     if(v1.first == v2.first) return v1.second < v2.second;
+            //     for(int i = 0; i < v1.size(); i++) {
+            //         if(v1[i] < v2[i]) return true;
+            //         else if(v2[i] < v1[i]) return false;
+            //     }
+            //     return false;
+            // }); 
             sort(v.begin(), v.end(), [](const auto &v1, const auto &v2){
-                // if(v1.first == v2.first) return v1.second < v2.second;
                 for(int i = 0; i < v1.first.size(); i++) {
                     if(v1.first[i] < v2.first[i]) return true;
                     else if(v1.first[i] > v2.first[i]) return false;
