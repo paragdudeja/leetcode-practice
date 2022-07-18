@@ -20,12 +20,12 @@ public:
         int count = 0;
         
         for(int startRow = 0; startRow < m; ++startRow) {
-            vector<int> row(n);
+            vector<int> nums(n);
             for(int currentRow = startRow; currentRow < m; ++currentRow) {
                 for(int col = 0; col < n; ++col) {
-                    row[col] += matrix[currentRow][col];
+                    nums[col] += matrix[currentRow][col];
                 }
-                count += getCountToTarget(row, target);
+                count += getCountToTarget(nums, target);
             }
         }
         return count;
