@@ -1,19 +1,7 @@
 class Solution {
-public:
-    int getCountToTarget(vector<int> &nums, int target) {
-        unordered_map<int, int> mp;
-        mp[0] = 1;
-        int sum = 0;
-        int count = 0;
-        
-        for(const int &num: nums) {
-            sum += num;
-            count += mp.find(sum - target) == mp.end() ? 0 : mp[sum - target];
-            mp[sum]++;
-        }
-        return count;
-    }
-    
+public: 
+    // TC : O(M^2 * N)
+    // SC : O(N)
     int numSubmatrixSumTarget(vector<vector<int>>& matrix, int target) {
         int m = matrix.size();
         int n = matrix[0].size();
@@ -27,6 +15,22 @@ public:
                 }
                 count += getCountToTarget(nums, target);
             }
+        }
+        return count;
+    }
+    
+    // TC : O(N)
+    // SC : O(N)
+    int getCountToTarget(vector<int> &nums, int target) {
+        unordered_map<int, int> mp;
+        mp[0] = 1;
+        int sum = 0;
+        int count = 0;
+        
+        for(const int &num: nums) {
+            sum += num;
+            count += mp.find(sum - target) == mp.end() ? 0 : mp[sum - target];
+            mp[sum]++;
         }
         return count;
     }
