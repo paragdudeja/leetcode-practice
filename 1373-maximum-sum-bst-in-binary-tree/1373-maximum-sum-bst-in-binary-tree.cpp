@@ -14,7 +14,7 @@ struct NodeStatus {
     int sum;
     bool isBST;
     int maxLeft;
-    int minLeft;
+    int minRight;
 };
 
 class Solution {
@@ -32,11 +32,11 @@ public:
         NodeStatus right = helper(root->right, ans);
         
         int sum = root->val + left.sum + right.sum;
-        bool isBST = left.isBST && right.isBST && root->val > left.maxLeft  && root->val < right.minLeft;
+        bool isBST = left.isBST && right.isBST && root->val > left.maxLeft  && root->val < right.minRight;
         if(isBST) ans = max(ans, sum);
         int maxLeft = max(root->val, right.maxLeft);
-        int minLeft = min(root->val, left.minLeft);
+        int minRight = min(root->val, left.minRight);
         
-        return {sum, isBST, maxLeft, minLeft};
+        return {sum, isBST, maxLeft, minRight};
     }
 };
