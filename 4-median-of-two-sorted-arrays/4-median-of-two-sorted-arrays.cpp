@@ -1,6 +1,6 @@
 class Solution {
 public:
-    // TC : O(Log base 2 min(M, N))
+    // TC : O(Log min(M, N))
     // SC : O(1)
     double findMedianSortedArrays(vector<int>& nums1, vector<int>& nums2) {
         int m = nums1.size();
