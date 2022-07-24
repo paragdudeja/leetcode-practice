@@ -2,6 +2,24 @@ class Solution {
 public:
     int maxProfit(vector<int>& prices) {
         int n = prices.size();
+        vector<int> ahead2(2);
+        vector<int> ahead1(2);
+        vector<int> curr(2);
+        
+        for(int i = n-1; i >= 0; --i) {
+            curr[1] = max(-prices[i] + ahead1[0], ahead1[1]);
+            curr[0] = max(prices[i] + ahead2[1], ahead1[0]);
+            
+            ahead2 = ahead1;
+            ahead1 = curr;
+        }
+        
+        return ahead1[1];
+    }
+    
+    /*
+    int maxProfit(vector<int>& prices) {
+        int n = prices.size();
         vector<vector<int>> dp(n+2, vector<int>(2));
         
         for(int i = n-1; i >= 0; --i) {
@@ -11,6 +29,7 @@ public:
         
         return dp[0][1];
     }
+    */
     
     /*
     int maxProfit(vector<int>& prices) {
