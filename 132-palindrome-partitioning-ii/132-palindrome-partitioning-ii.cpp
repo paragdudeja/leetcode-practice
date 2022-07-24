@@ -8,6 +8,27 @@ public:
         return true;
     }
     
+    int minCut(string s) {
+        int n = s.length();
+        vector<int> dp(n+1);
+        dp[n] = 0;
+        
+        for(int i = n-1; i >= 0; --i) {
+            int minCuts = INT_MAX;
+            for(int j = i; j < n; ++j) {
+                if(isPalindrome(s, i, j)) {
+                    int cuts = 1 + dp[j+1];
+                    minCuts = min(minCuts, cuts);
+                }
+            }
+
+            dp[i] = minCuts;
+        }
+        
+        return dp[0]-1;
+    }
+    
+    /*
     int solve(string &s, int i, int n, vector<int> &dp) {
         if(i == n) return 0;
         
@@ -29,6 +50,7 @@ public:
         vector<int> dp(n, -1);
         return solve(s, 0, n, dp) - 1;
     }
+    */
     
     /*
     int minCut(string s) {
