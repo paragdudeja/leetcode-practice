@@ -8,41 +8,28 @@ public:
         return true;
     }
     
-
-    int solve (string & s, int i, int j, vector<vector<int>> & dp){    
+    int solve(string &s, int i, int n, vector<int> &dp) {
+        if(i == n) return 0;
         
-        if(i>=j or isPalindrome(s, i, j)) return 0;
+        if(dp[i] != -1) return dp[i];
         
-        if(dp[i][j]!=-1) return dp[i][j];
-        
-        int ans = INT_MAX;
-        
-        for(int k=i; k<j; k++){
-            
-            /* 
-                Instead of writing below standard line
-                We will recurse for only right part
-                Only when left part turns out to be palindrome
-                
-                int temp =  solve (s, i, k, dp, palindrome) + solve (s, k+1, j, dp, palindrome) + 1;
-                
-            */
-            
-            if(isPalindrome(s, i, k)){                         
-                int temp = solve (s, k+1, j, dp) + 1;
-                ans = min (ans, temp);
+        int minCuts = INT_MAX;
+        for(int j = i; j < n; ++j) {
+            if(isPalindrome(s, i, j)) {
+                int cuts = 1 + solve(s, j+1, n, dp);
+                minCuts = min(minCuts, cuts);
             }
         }
         
-        return dp[i][j] = ans;
+        return dp[i] = minCuts;
     }
     
     int minCut(string s) {
         int n = s.length();
-        vector<vector<int>> dp (n+1, vector<int> (n+1, -1));
-            
-        return solve (s, 0, n-1, dp);
+        vector<int> dp(n, -1);
+        return solve(s, 0, n, dp) - 1;
     }
+    
     /*
     int minCut(string s) {
         int n = s.size();
