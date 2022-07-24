@@ -1,5 +1,24 @@
 class Solution {
 public:
+    int minCut(string s) {
+        int n = s.size();
+        vector<int> cuts(n);
+        vector<vector<bool>> dp(n, vector<bool>(n));
+        
+        for(int j = 0; j < n; j++) {
+            int minCuts = j;
+            for(int i = 0; i <= j; i++) {
+                if(s[j] == s[i] && (j - i < 3 || dp[i+1][j-1])) {
+                    dp[i][j] = 1;
+                    minCuts = i == 0 ? 0 : min(minCuts, cuts[i-1] + 1);
+                }
+            }
+            cuts[j] = minCuts;
+        }
+        return cuts[n-1];
+    }
+    
+    /*
     bool isPalindrome (string & s, int i, int j){
         while(i<j){
             if(s[i]!=s[j]) return false;
@@ -7,7 +26,9 @@ public:
         }
         return true;
     }
+    */
     
+    /*
     int minCut(string s) {
         int n = s.length();
         vector<int> dp(n+1);
@@ -27,6 +48,7 @@ public:
         
         return dp[0]-1;
     }
+    */
     
     /*
     int solve(string &s, int i, int n, vector<int> &dp) {
