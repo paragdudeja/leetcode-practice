@@ -15,8 +15,9 @@ public:
         for (int n : s)
             ++cnt[countBit(n)];
         for (int i = 0; i < 32; ++i)
-            for (int j = max(i, k - i); j < 32; ++j)
-                res += cnt[i] * cnt[j] * (i == j ? 1 : 2);
+            for (int j = 0; j < 32; ++j)
+                if(i + j >= k)
+                    res += cnt[i] * cnt[j];
         return res;
     }
 };
