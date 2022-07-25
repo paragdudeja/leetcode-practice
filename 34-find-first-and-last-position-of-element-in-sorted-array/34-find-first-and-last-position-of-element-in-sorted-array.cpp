@@ -4,10 +4,7 @@ public:
         int first = lowerBound(nums, target);
         int last = upperBound(nums, target);
 
-        if(first == last) 
-            return {-1, -1};
-        else 
-            return {first, last-1};        
+        return first == last ? vector<int>{-1, -1} : vector<int>{first, last-1};        
     }
     
     int lowerBound(vector<int> &nums, int x) {
