@@ -9,6 +9,8 @@
  */
 class Solution {
 public:
+    // TC : O(N)
+    // SC : O(1)
     TreeNode* lowestCommonAncestor(TreeNode* root, TreeNode* p, TreeNode* q) {
         if(!root || root == p || root == q) return root;
         
