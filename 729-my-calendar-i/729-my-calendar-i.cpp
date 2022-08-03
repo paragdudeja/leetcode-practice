@@ -1,19 +1,15 @@
 class MyCalendar {
-    vector<pair<int, int>> v;
+    map<int,int>events;
 public:
-    MyCalendar() {
-        
+    MyCalendar() {   
     }
     
     bool book(int start, int end) {
-        for(auto &p: v) {
-            if(p.first < end && p.second > start) {
-                return false;
-            }
-        }
-        v.push_back({start, end});
+        auto next = events.upper_bound(start);
+        if(next != events.end() &&   (*next).second < end)return false;
+        events.insert({end,start});
         return true;
-    } 
+    }
     
 };
 
