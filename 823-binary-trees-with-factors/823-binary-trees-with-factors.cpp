@@ -7,10 +7,9 @@ public:
         vector<long long> dp(n, 1);
         unordered_map<int, int> m;
         
-        m[nums[0]] = 0;
-        
+        long long ans = 0;
         const long long MOD = 1000000007;
-        for(int i = 1; i < n; ++i) {
+        for(int i = 0; i < n; ++i) {
             m[nums[i]] = i;
             for(int j = 0; j < i; ++j) {
                 if(nums[i] % nums[j] == 0) {
@@ -20,11 +19,7 @@ public:
                     }
                 }
             }
-        }
-        
-        long long ans = 0;
-        for(auto i: dp) {
-            ans = (ans + i)%MOD;
+            ans = (ans + dp[i])%MOD;
         }
         
         return ans;
