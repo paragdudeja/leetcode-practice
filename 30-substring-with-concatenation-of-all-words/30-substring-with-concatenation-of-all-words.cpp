@@ -1,6 +1,44 @@
 class Solution {
 public:
     vector<int> findSubstring(string s, vector<string>& words) {
+        
+    vector<int> ans;
+        unordered_map<string, int> mp;
+        for(auto i:words){
+            mp[i]++;
+        }
+        
+        int left=0, size=words[0].size(), count=mp.size(), total=size*words.size();
+        if(total>s.size()){
+            return ans;
+        }
+        
+        for(int i=0; i<=s.size()-total; i++){
+            unordered_map<string, int> mp2;
+            int temp=count;
+            for(int j=i; j<i+total; j+=size){
+                string curr=s.substr(j, size);
+                if(mp.find(curr)!=mp.end()){
+                    mp2[curr]++;
+                    if(mp2[curr]==mp[curr]){
+                        --temp;
+                    }
+                    if(mp2[curr]>mp[curr]){
+                        break;
+                    }
+                }else{
+                    break;
+                }
+                if(temp==0){
+                    ans.push_back(i);
+                }
+            }
+        }
+        
+        return ans;
+    }
+    /*
+    vector<int> findSubstring(string s, vector<string>& words) {
         int len = words[0].size();
         if(s.size() < len * words.size()) return vector<int>();
          
@@ -33,4 +71,5 @@ public:
         }
         return ans;
     }
+    */
 };
