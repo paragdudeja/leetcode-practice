@@ -8,9 +8,8 @@ public:
                 s.insert({x, 1});
             }
             else {
-                pair<int, int> new_pair{x, it->second+1};
+                s.insert({x, it->second+1});
                 s.erase(it);
-                s.insert(new_pair);
             }
         }
         
