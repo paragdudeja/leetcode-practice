@@ -1,6 +1,33 @@
 class Solution {
 public:
     bool isPossible(vector<int>& nums) {
+        unordered_map<int, int> available, vacant;
+        for(int &x: nums) {
+            available[x]++;
+        }
+        
+        for(int &x: nums) {
+            if(available[x] == 0) continue;
+            
+            if(vacant[x] > 0) {
+                vacant[x]--;
+                available[x]--;
+                vacant[x+1]++;
+            }
+            else if(available[x+1]>0 && available[x+2]>0) {
+                available[x]--;
+                available[x+1]--;
+                available[x+2]--;
+                vacant[x+3]++;
+            }
+            else {
+                return false;
+            }
+        }
+        return true;
+    }
+    /*
+    bool isPossible(vector<int>& nums) {
         unordered_map<int, priority_queue<int, vector<int>, greater<int>>> s;
         for(int x: nums) {
             if(s[x-1].empty()) {
@@ -21,6 +48,7 @@ public:
         }
         return true;
     }
+    */
     /*
     bool isPossible(vector<int>& nums) {
         multiset<pair<int, int>> s;
