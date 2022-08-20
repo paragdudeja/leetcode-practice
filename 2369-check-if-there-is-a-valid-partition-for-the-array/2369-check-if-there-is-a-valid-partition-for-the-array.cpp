@@ -3,21 +3,29 @@ public:
     bool validPartition(vector<int>& nums) {
         int n = nums.size();
         
-        vector<bool> dp(n+1);
-        dp[n] = true;
-        dp[n-2] = nums[n-2] == nums[n-1];
+        // vector<bool> dp(n+1);
+        // dp[n] = true;
+        // dp[n-2] = nums[n-2] == nums[n-1];
+        
+        bool first = false, second = nums[n-2] == nums[n-1], third = false, fourth = true;
+        
         for(int index = n-3; index >= 0; index--) {
             if(nums[index] == nums[index+1]) {
-                dp[index] = dp[index] or dp[index+2];
+                first = first or third;
             }
             if(nums[index]==nums[index+1] && nums[index]==nums[index+2]) {
-                dp[index] = dp[index] or dp[index+3];
+                first = first or fourth;
             }
             else if(nums[index]+1==nums[index+1] && nums[index]+2==nums[index+2]) {
-                dp[index] = dp[index] or dp[index+3];
+                first = first or fourth;
             }
+            
+            fourth = third;
+            third = second;
+            second = first;
+            first = false;
         }
-        return dp[0];
+        return second;
     }
     
     /*
