@@ -7,8 +7,7 @@ public:
         int used = 0;
         
         int index = 0;
-        while(true) {
-            if(maxReach >= target) break;
+        while(maxReach < target) {
             while(index < n && stations[index][0] <= maxReach) {
                 pq.push(stations[index][1]);
                 index++;
