@@ -2,6 +2,28 @@ class Solution {
 public:
     bool validPartition(vector<int>& nums) {
         int n = nums.size();
+        vector<bool> dp(n+1);
+        dp[n] = true;
+        
+        for(int index = n-2; index >= 0; index--) {
+            if(nums[index] == nums[index+1]) {
+                dp[index] = dp[index] or dp[index+2];
+            }
+            if(index+2 < n) {
+                if(nums[index]==nums[index+1] && nums[index]==nums[index+2]) {
+                    dp[index] = dp[index] or dp[index+3];
+                }
+                if(nums[index]+1==nums[index+1] && nums[index]+2==nums[index+2]) {
+                    dp[index] = dp[index] or dp[index+3];
+                }
+            }
+        }
+        return dp[0];
+    }
+    
+    /*
+    bool validPartition(vector<int>& nums) {
+        int n = nums.size();
         vector<int> dp(n+2, -1);
         return solve(0, nums, dp);
     }
@@ -29,4 +51,5 @@ public:
         
         return dp[index] = false;
     }
+    */
 };
