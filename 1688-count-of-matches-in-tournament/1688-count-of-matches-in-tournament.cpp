@@ -4,12 +4,7 @@ public:
         int match_count = 0;
         while(n > 1) {
             match_count += (n/2);
-            if(n&1) {
-                n = n/2 + 1;
-            }
-            else {
-                n /= 2;
-            }
+            n = (n+1)/2;
         }
         return match_count;
     }
