@@ -1,7 +1,7 @@
 class Solution {
 public:
     int mostBooked(int n, vector<vector<int>>& meetings) {
-        vector<pair<long long, int>> room(n);
+        vector<pair<long long, int>> room(n); // {Time first available, number of meeting scheduled till now, in this room}
         
         sort(meetings.begin(), meetings.end());
         
@@ -36,8 +36,8 @@ public:
         }
         
         int maxOccupiedId = 0;
-        for(int i = 1; i < n; ++i) {
-            if(room[i].second > room[maxOccupiedId].second) {
+        for(int i = 0; i < n; ++i) {
+            if(room[i].second> room[maxOccupiedId].second) {
                 maxOccupiedId = i;
             }
         }
