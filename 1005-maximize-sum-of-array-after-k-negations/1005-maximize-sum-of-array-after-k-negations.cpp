@@ -13,6 +13,8 @@ public:
             int num = pq.top();
             pq.pop();
             
+            if(num == 0) break;
+            
             int newnum = -num;
             sum = sum - num + newnum;
             pq.push(newnum);
