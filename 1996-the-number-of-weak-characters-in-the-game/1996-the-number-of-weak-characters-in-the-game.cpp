@@ -1,23 +1,23 @@
 class Solution {
 public:
     int numberOfWeakCharacters(vector<vector<int>>& properties) {
-        vector<vector<int>> mp(100002);
+        map<int, vector<int>> mp;
         int start = 0;
         
         for(vector<int> &prop: properties) {
             mp[prop[0]].push_back(prop[1]);
-            start = max(start, prop[0]);
         }
         
         int rightMax = 0;
         
         int count = 0;
-        for(int i = start; i >= 1; --i) {
-            if(mp[i].empty()) continue;
-            sort(mp[i].begin(), mp[i].end());
-            int cnt = upper_bound(mp[i].begin(), mp[i].end(), rightMax-1) - mp[i].begin();
-            count += cnt;
-            rightMax = max(rightMax, mp[i].back());
+        for(auto it = mp.rbegin(); it != mp.rend(); ++it) {
+            int mx = 0;
+            for(auto &x: it->second) {
+                if(x < rightMax) ++count;
+                mx = max(mx, x);
+            }
+            rightMax = max(mx, rightMax);
         }
         
         return count;
