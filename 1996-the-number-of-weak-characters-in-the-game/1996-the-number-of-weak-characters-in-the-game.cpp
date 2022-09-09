@@ -1,25 +1,18 @@
 class Solution {
 public:
     int numberOfWeakCharacters(vector<vector<int>>& properties) {
-        map<int, vector<int>> mp;
-        int start = 0;
+        sort(properties.begin(), properties.end(), [&](vector<int> &v1, vector<int> &v2){
+            if(v1[0] == v2[0]) return v1[1] > v2[1];
+            return v1[0] < v2[0];
+        });
         
-        for(vector<int> &prop: properties) {
-            mp[prop[0]].push_back(prop[1]);
-        }
-        
-        int rightMax = 0;
-        
-        int count = 0;
-        for(auto it = mp.rbegin(); it != mp.rend(); ++it) {
-            int mx = 0;
-            for(auto &x: it->second) {
-                if(x < rightMax) ++count;
-                mx = max(mx, x);
+        int mx = 0, count = 0;
+        for(int i = properties.size()-1; i >= 0; --i) {
+            if(properties[i][1] < mx) {
+                ++count;
             }
-            rightMax = max(mx, rightMax);
+            mx = max(mx, properties[i][1]);
         }
-        
         return count;
     }
 };
