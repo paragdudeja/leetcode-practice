@@ -11,21 +11,18 @@
 class Solution {
 public:
     ListNode* deleteDuplicates(ListNode* head) {
-        ListNode* dummy_head = new ListNode(0);
-        ListNode* tail = dummy_head;
-        
-        tail->next = head;
-        while(tail->next && tail->next->next) {
-            if(tail->next->val == tail->next->next->val) {
-                while(tail->next && tail->next->next && tail->next->val == tail->next->next->val) {
-                    tail->next->next = tail->next->next->next;
-                }
-                tail->next = tail->next->next;
+        ListNode* dummy = new ListNode(0);
+        dummy->next = head;
+        ListNode* cur = dummy;
+        int duplicate = -1;
+        while (cur->next && cur->next->next) {
+            if (cur->next->val == cur->next->next->val) {
+                duplicate = cur->next->val;
+                while (cur->next && cur->next->val == duplicate) 
+                    cur->next = cur->next->next;
             }
-            else {
-                tail = tail->next;
-            }
+            else cur = cur->next;
         }
-        return dummy_head->next;
+        return dummy->next;
     }
 };
