@@ -1,26 +1,20 @@
 class TimeMap {
 public:
-    map<string, set<int>> ds;
-    map<int, string> mp;
+    // map<string, set<int>> ds;
+    // map<int, string> mp;
     TimeMap() {
         
     }
     
+    unordered_map<string, map<int, string>> m;
     void set(string key, string value, int timestamp) {
-        ds[key].insert(timestamp);
-        mp[timestamp] = value;
+      m[key].insert({ timestamp, value });
     }
-    
     string get(string key, int timestamp) {
-        string value;
-        if(ds[key].size() == 0) return value;
-        auto it = ds[key].upper_bound(timestamp);
-        if(it != ds[key].begin()) {
-            --it;
-            value = mp[*it];
-        }
-        return value;
+      auto it = m[key].upper_bound(timestamp);
+      return it == m[key].begin() ? "" : prev(it)->second;
     }
+
 };
 
 /**
