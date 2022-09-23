@@ -3,7 +3,7 @@ public:
     int concatenatedBinary(int n) {
         long long ans = 1;
         for(int i = 2; i <= n; ++i) {
-            int k = countBits(i);
+            int k = log2(i) + 1;
             ans <<= k;
             ans += i;
             ans = ans % 1000000007;
@@ -11,6 +11,7 @@ public:
         return (int)ans;
     }
     
+    /*
     int countBits(int n) {
         int count = 0;
         while(n) {
@@ -19,4 +20,5 @@ public:
         }
         return count;
     }
+    */
 };
