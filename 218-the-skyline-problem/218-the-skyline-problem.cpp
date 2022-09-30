@@ -14,18 +14,6 @@ public:
         }
         
         sort(points.begin(), points.end(), [](auto &p1, auto &p2){
-            // if(p1.is_start && p2.is_start) {
-            //     if(p1.x == p2.x) return p1.y > p2.y;
-            //     return p1.x < p2.x;
-            // }
-            // else if(!p1.is_start && !p2.is_start) {
-            //     if(p1.x == p2.x) return p1.y < p2.y;
-            //     return p1.x < p2.x;
-            // }
-            // else {
-            //     if(p1.x == p2.x) return p2.is_start;
-            //     return p1.x < p2.x;
-            // }
             if(p1.x != p2.x) {
                 return p1.x < p2.x;
             }
