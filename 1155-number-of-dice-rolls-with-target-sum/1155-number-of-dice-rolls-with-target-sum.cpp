@@ -1,6 +1,25 @@
 class Solution {
 public:
     int numRollsToTarget(int n, int k, int target) {
+        vector<vector<int>> dp(n+1, vector<int>(target+1, 0));
+        
+        dp[0][0] = 1;
+        
+        for(int i = 1; i <= n; ++i) {
+            for(int t = 1; t <= target; ++t) {
+                int ans = 0;
+                for(int num = 1; num <= k; ++num) {
+                    if(t >= num) {
+                        dp[i][t] = (dp[i][t] + dp[i-1][t - num]) % 1000000007; 
+                    } 
+                }
+            }
+        }
+        return dp[n][target];
+    }
+    
+    /*
+    int numRollsToTarget(int n, int k, int target) {
         vector<vector<int>> dp(31, vector<int>(1001, -1));
         return solve(n, k, target, dp);
     }
@@ -17,4 +36,5 @@ public:
         }
         return dp[n][target] = ans;
     }
+    */
 };
