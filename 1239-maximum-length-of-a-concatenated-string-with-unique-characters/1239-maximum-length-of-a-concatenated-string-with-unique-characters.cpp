@@ -6,8 +6,9 @@ public:
         vector<int> dp(tablesize);
         
         int ans = 0;
-        for(int i = 1; i < tablesize; ++i) {
-            for(int j = 0; j < n; ++j) {
+        for(int i = 1; i < tablesize; ++i) { // Interate over all combinations
+            
+            for(int j = 0; j < n; ++j) { // If current index part of current combination
                 bool flag = false;
                 if(i & (1<<j)) {
                     for(char ch: arr[j]) {
@@ -22,6 +23,7 @@ public:
                     if(flag) break;
                 }
             }
+            
             ans = max(ans, __builtin_popcount(dp[i]));
         }
         
