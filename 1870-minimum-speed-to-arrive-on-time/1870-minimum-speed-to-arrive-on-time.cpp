@@ -12,7 +12,7 @@ public:
                 time += ceil((double)dist[i]/mid);
             }
             time += (double)dist.back()/mid;
-            cout << time << ' ' << mid << endl;
+            // cout << time << ' ' << mid << endl;
             if(time <= hour) {
                 ans = mid;
                 high = mid-1;
